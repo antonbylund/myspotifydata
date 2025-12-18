@@ -286,16 +286,17 @@ fig8 = px.pie(
 fig8.write_html(output_dir / "08_artist_distribution_pie.html")
 print("✓ Saved: 08_artist_distribution_pie.html")
 
-# 9. Cumulative Streams Over Time
+# 9. Cumulative Hours Listened Over Time
 cumulative_data = df.sort_values('ts').reset_index(drop=True)
-cumulative_data['cumulative_streams'] = range(1, len(cumulative_data) + 1)
+cumulative_data['cumulative_ms'] = cumulative_data['ms_played'].cumsum()
+cumulative_data['cumulative_hours'] = cumulative_data['cumulative_ms'] / 1000 / 60 / 60
 cumulative_data_sample = cumulative_data.iloc[::100]  # Sample every 100th row for performance
 fig9 = px.line(
     cumulative_data_sample,
     x='ts',
-    y='cumulative_streams',
-    title='Cumulative Streams Over Time',
-    labels={'ts': 'Date', 'cumulative_streams': 'Cumulative Streams'}
+    y='cumulative_hours',
+    title='Cumulative Hours Listened Over Time',
+    labels={'ts': 'Date', 'cumulative_hours': 'Cumulative Hours'}
 )
 fig9.update_xaxes(title_text="Date")
 fig9.write_html(output_dir / "09_cumulative_streams.html")
