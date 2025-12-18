@@ -128,12 +128,15 @@ fig2 = px.bar(
     labels={'count': 'Number of Streams', 'master_metadata_track_name': 'Track'},
     color='count',
     color_continuous_scale='Plasma',
-    hover_data={'master_metadata_album_artist_name': True}
+    hover_data={'master_metadata_album_artist_name': True},
+    text='master_metadata_track_name'
 )
+fig2.update_traces(textposition='auto', textfont=dict(size=9))
 fig2.update_layout(
-    yaxis={'categoryorder': 'total ascending', 'tickfont': {'size': 10}},
-    height=min(1200, 25*args.top_tracks),
-    margin=dict(l=300, r=50, t=50, b=50)
+    yaxis={'categoryorder': 'total ascending'},
+    height=min(1200, 20*args.top_tracks),
+    margin=dict(l=50, r=50, t=50, b=50),
+    showlegend=False
 )
 fig2.write_html(output_dir / "02_top_tracks.html")
 print(f"✓ Saved: 02_top_tracks.html")
@@ -347,12 +350,15 @@ fig12 = px.bar(
     labels={'count': 'Number of Streams', 'master_metadata_track_name': 'Track'},
     color='count',
     color_continuous_scale='Plasma',
-    hover_data={'master_metadata_album_artist_name': True}
+    hover_data={'master_metadata_album_artist_name': True},
+    text='master_metadata_track_name'
 )
+fig12.update_traces(textposition='auto', textfont=dict(size=9))
 fig12.update_layout(
-    yaxis={'categoryorder': 'total ascending', 'tickfont': {'size': 10}},
-    height=min(1200, 25*args.top_tracks),
-    margin=dict(l=300, r=50, t=50, b=50)
+    yaxis={'categoryorder': 'total ascending'},
+    height=min(1200, 20*args.top_tracks),
+    margin=dict(l=50, r=50, t=50, b=50),
+    showlegend=False
 )
 fig12.write_html(output_dir / "12_top_tracks_2025.html")
 print(f"✓ Saved: 12_top_tracks_2025.html")
