@@ -364,23 +364,6 @@ fig12.update_layout(
 fig12.write_html(output_dir / "12_top_tracks_2025.html")
 print(f"Saved: 12_top_tracks_2025.html")
 
-# 13. Top Artists by Number of Liked Songs (not skipped)
-df_liked = df[df['skipped'] == False].copy()
-artists_liked_songs = df_liked.groupby('master_metadata_album_artist_name').size().reset_index(name='liked_songs').sort_values('liked_songs', ascending=False).head(args.top_artists)
-fig13 = px.bar(
-    artists_liked_songs,
-    x='liked_songs',
-    y='master_metadata_album_artist_name',
-    orientation='h',
-    title=f'Top {args.top_artists} Artists by Number of Liked Songs',
-    labels={'liked_songs': 'Number of Liked Songs', 'master_metadata_album_artist_name': 'Artist'},
-    color='liked_songs',
-    color_continuous_scale='Greens'
-)
-fig13.update_layout(yaxis={'categoryorder': 'total ascending'}, height=600)
-fig13.write_html(output_dir / "13_top_artists_by_liked_songs.html")
-print(f"Saved: 13_top_artists_by_liked_songs.html")
-
 print("\n" + "=" * 60)
 print(f"All visualizations saved to: {output_dir}")
 print("=" * 60)
