@@ -18,7 +18,7 @@ args = parser.parse_args()
 
 # Path to extracted data
 data_dir = Path(r"c:\Users\Anton\Desktop\spotifygrej\extracted\Spotify Extended Streaming History")
-output_dir = Path(r"c:\Users\Anton\Desktop\spotifygrej\visualizations")
+output_dir = Path(r"c:\Users\Anton\Desktop\spotifygrej\docs")
 output_dir.mkdir(exist_ok=True)
 
 # Load all streaming history JSON files
