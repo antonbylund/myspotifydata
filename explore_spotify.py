@@ -62,17 +62,17 @@ print(f"Total streaming time (hours): {df['ms_played'].sum() / 1000 / 60 / 60:.1
 
 # Top artists
 print("\n" + "=" * 60)
-print("TOP 10 ARTISTS")
+print(f"TOP {args.top_artists} ARTISTS")
 print("=" * 60)
-top_artists = df['master_metadata_album_artist_name'].value_counts().head(10)
+top_artists = df['master_metadata_album_artist_name'].value_counts().head(args.top_artists)
 for i, (artist, count) in enumerate(top_artists.items(), 1):
     print(f"{i}. {artist}: {count} streams")
 
 # Top tracks
 print("\n" + "=" * 60)
-print("TOP 10 TRACKS")
+print(f"TOP {args.top_tracks} TRACKS")
 print("=" * 60)
-top_tracks = df.groupby(['master_metadata_track_name', 'master_metadata_album_artist_name']).size().sort_values(ascending=False).head(10)
+top_tracks = df.groupby(['master_metadata_track_name', 'master_metadata_album_artist_name']).size().sort_values(ascending=False).head(args.top_tracks)
 for i, ((track, artist), count) in enumerate(top_tracks.items(), 1):
     print(f"{i}. {track} by {artist}: {count} streams")
 
