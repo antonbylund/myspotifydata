@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Spotify Data - Interactive Visualizations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1DB954 0%, #191414 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .stat-card h3 {
+            opacity: 0.8;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .stat-card .value {
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+        .visualizations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        .section-title {
+            grid-column: 1 / -1;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        .viz-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+        }
+        .viz-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        .viz-card a {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+        }
+        .viz-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        .viz-description {
+            opacity: 0.7;
+            font-size: 0.9em;
+            flex-grow: 1;
+            margin-bottom: 12px;
+        }
+        .viz-link {
+            color: #1DB954;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: auto;
+        }
+        footer {
+            text-align: center;
+            opacity: 0.6;
+            margin-top: 50px;
+            font-size: 0.9em;
+        }
+        footer a {
+            color: #1DB954;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎵 My Spotify Data</h1>
+            <p class="subtitle">Interactive Streaming History Analysis</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Streams</h3>
+                <div class="value">150,621</div>
+            </div>
+            <div class="stat-card">
+                <h3>Listening Hours</h3>
+                <div class="value">6,311</div>
+            </div>
+            <div class="stat-card">
+                <h3>Data Range</h3>
+                <div class="value">5 Years</div>
+            </div>
+            <div class="stat-card">
+                <h3>Top Artist</h3>
+                <div class="value">APHACA</div>
+            </div>
+        </div>
+
+        <div class="visualizations">
+            <h2 class="section-title">All-Time Analysis</h2>
+            
+            <div class="viz-card">
+                <a href="01_top_artists.html">
+                    <div class="viz-title">🎤 Top 100 Artists</div>
+                    <div class="viz-description">Explore your most-streamed artists across all time</div>
+                    <div class="viz-link">View →</div>
+                </a>
+            </div>
+
+            <div class="viz-card">
+                <a href="02_top_tracks.html">
+                    <div class="viz-title">🎵 Top 100 Tracks</div>
+                    <div class="viz-description">Discover your most-played songs of all time</div>
+                    <div class="viz-link">View →</div>
+                </a>
+            </div>
+
+            <div class="viz-card">
+                <a href="08_artist_distribution_pie.html">
+                    <div class="viz-title">🥧 Artist Distribution</div>
+                    <div class="viz-description">Pie chart of top 20 artists by streams</div>
+                    <div class="viz-link">View →</div>
+                </a>
+            </div>
+
+            <h2 class="section-title">Trends & Patterns</h2>
+
+            <div class="viz-card">
+                <a href="03_streams_by_year.html">
+                    <div class="viz-title">📊 Streams by Year</div>
+                    <div class="viz-description">Your streaming activity year-over-year</div>
+                    <div class="viz-link">View →</div>
+                </a>
+            </div>
+
+            <div class="viz-card">
+                <a href="04_streams_by_month.html">
+                    <div class="viz-title">📈 Monthly Trends</div>
+                    <div class="viz-description">Monthly streaming activity over time</div>
+                    <div class="viz-link">View →</div>
+                </a>
+            </div>
+
+            <div class="viz-card">
+                <a href="04b_streams_by_day_moving_avg.html">
+                    <div class="viz-title">📅 Daily Activity</div>
+                    <div class="viz-description">Daily listening hours with moving averages</div>
+                    <div class="viz-link">View →</div>
+                </a>
+            </div>
+
+            <div class="viz-card">
+                <a href="05_streams_by_day_of_week.html">
+                    <div class="viz-title">📆 Day of Week</div>
+                    <div class="viz-description">Which days do you listen most?</div>
+                    <div class="viz-link">View →</div>
+                </a>
+            </div>
+
+            <div class="viz-card">
+                <a href="06_streams_by_hour.html">
+                    <div class="viz-title">🕐 Hourly Patterns</div>
+                    <div class="viz-description">Your listening patterns throughout the day</div>
+                    <div class="viz-link">View →</div>
+                </a>
+            </div>
+
+            <div class="viz-card">
+                <a href="10_streaming_heatmap.html">
+                    <div class="viz-title">🔥 Activity Heatmap</div>
+                    <div class="viz-description">Day of week vs hour heatmap</div>
+                    <div class="viz-link">View →</div>
+                </a>
+            </div>
+
+            <h2 class="section-title">2025 Analysis</h2>
+
+            <div class="viz-card">
+                <a href="11_top_artists_2025.html">
+                    <div class="viz-title">🎤 Top Artists 2025</div>
+                    <div class="viz-description">Your favorite artists this year</div>
+                    <div class="viz-link">View →</div>
+                </a>
+            </div>
+
+            <div class="viz-card">
+                <a href="12_top_tracks_2025.html">
+                    <div class="viz-title">🎵 Top Tracks 2025</div>
+                    <div class="viz-description">Your most-played songs this year</div>
+                    <div class="viz-link">View →</div>
+                </a>
+            </div>
+
+            <h2 class="section-title">Insights</h2>
+
+            <div class="viz-card">
+                <a href="07_time_listened_distribution.html">
+                    <div class="viz-title">⏱️ Listen Time Distribution</div>
+                    <div class="viz-description">How long do you typically listen to tracks?</div>
+                    <div class="viz-link">View →</div>
+                </a>
+            </div>
+
+            <div class="viz-card">
+                <a href="09_cumulative_streams.html">
+                    <div class="viz-title">📈 Cumulative Streams</div>
+                    <div class="viz-description">Your streaming journey over time</div>
+                    <div class="viz-link">View →</div>
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            <p>Built with <a href="https://github.com/antonbylund/myspotifydata">Spotify Data Analyzer</a></p>
+        </footer>
+    </div>
+</body>
+</html>
