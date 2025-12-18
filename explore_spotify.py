@@ -115,7 +115,7 @@ fig1 = px.bar(
 )
 fig1.update_layout(yaxis={'categoryorder': 'total ascending'}, height=600)
 fig1.write_html(output_dir / "01_top_artists.html")
-print(f"✓ Saved: 01_top_artists.html")
+print(f"Saved: 01_top_artists.html")
 
 # 2. Top Tracks - Interactive Bar Chart
 top_tracks_df = df.groupby(['master_metadata_track_name', 'master_metadata_album_artist_name']).size().reset_index(name='count').sort_values('count', ascending=False).head(args.top_tracks)
@@ -139,7 +139,7 @@ fig2.update_layout(
     showlegend=False
 )
 fig2.write_html(output_dir / "02_top_tracks.html")
-print(f"✓ Saved: 02_top_tracks.html")
+print(f"Saved: 02_top_tracks.html")
 
 # 3. Streams by Year - Line Chart
 yearly_data = df.groupby('year').size().reset_index(name='streams')
@@ -169,7 +169,7 @@ fig4 = px.line(
 )
 fig4.update_xaxes(tickangle=-45)
 fig4.write_html(output_dir / "04_streams_by_month.html")
-print("✓ Saved: 04_streams_by_month.html")
+print("Saved: 04_streams_by_month.html")
 
 # 4.5. Streams by Day with 7-Day Moving Average (based on time listened)
 df['date'] = df['ts'].dt.date
@@ -224,7 +224,7 @@ fig4_5.update_layout(
     yaxis=dict(range=[0, 24])
 )
 fig4_5.write_html(output_dir / "04b_streams_by_day_moving_avg.html")
-print("✓ Saved: 04b_streams_by_day_moving_avg.html")
+print("Saved: 04b_streams_by_day_moving_avg.html")
 
 # 5. Streaming by Day of Week
 df['day_of_week'] = df['ts'].dt.day_name()
@@ -242,7 +242,7 @@ fig5 = px.bar(
     color_continuous_scale='Blues'
 )
 fig5.write_html(output_dir / "05_streams_by_day_of_week.html")
-print("✓ Saved: 05_streams_by_day_of_week.html")
+print("Saved: 05_streams_by_day_of_week.html")
 
 # 6. Streaming by Hour of Day
 df['hour'] = df['ts'].dt.hour
@@ -258,7 +258,7 @@ fig6 = px.bar(
 )
 fig6.update_xaxes(tickmode='linear', tick0=0, dtick=1)
 fig6.write_html(output_dir / "06_streams_by_hour.html")
-print("✓ Saved: 06_streams_by_hour.html")
+print("Saved: 06_streams_by_hour.html")
 
 # 7. Time Listened Distribution
 df_listened = df[df['ms_played'] > 0].copy()
@@ -271,7 +271,7 @@ fig7 = px.histogram(
 )
 fig7.add_vline(x=df_listened['ms_played'].mean(), line_dash="dash", line_color="red", annotation_text="Mean")
 fig7.write_html(output_dir / "07_time_listened_distribution.html")
-print("✓ Saved: 07_time_listened_distribution.html")
+print("Saved: 07_time_listened_distribution.html")
 
 # 8. Top Genres (inferred from artist frequency)
 top_n_artists = df['master_metadata_album_artist_name'].value_counts().head(args.top_genres)
@@ -284,7 +284,7 @@ fig8 = px.pie(
     hole=0.3
 )
 fig8.write_html(output_dir / "08_artist_distribution_pie.html")
-print("✓ Saved: 08_artist_distribution_pie.html")
+print("Saved: 08_artist_distribution_pie.html")
 
 # 9. Cumulative Hours Listened Over Time
 cumulative_data = df.sort_values('ts').reset_index(drop=True)
@@ -300,7 +300,7 @@ fig9 = px.line(
 )
 fig9.update_xaxes(title_text="Date")
 fig9.write_html(output_dir / "09_cumulative_streams.html")
-print("✓ Saved: 09_cumulative_streams.html")
+print("Saved: 09_cumulative_streams.html")
 
 # 10. Heatmap: Streaming Activity by Day of Week and Hour
 df['day_of_week_num'] = df['ts'].dt.dayofweek
@@ -321,7 +321,7 @@ fig10.update_layout(
     height=400
 )
 fig10.write_html(output_dir / "10_streaming_heatmap.html")
-print("✓ Saved: 10_streaming_heatmap.html")
+print("Saved: 10_streaming_heatmap.html")
 
 # 11. Top Artists - 2025 Only
 df_2025 = df[df['year'] == 2025]
@@ -338,7 +338,7 @@ fig11 = px.bar(
 )
 fig11.update_layout(yaxis={'categoryorder': 'total ascending'}, height=600)
 fig11.write_html(output_dir / "11_top_artists_2025.html")
-print(f"✓ Saved: 11_top_artists_2025.html")
+print(f"Saved: 11_top_artists_2025.html")
 
 # 12. Top Tracks - 2025 Only
 top_tracks_2025_df = df_2025.groupby(['master_metadata_track_name', 'master_metadata_album_artist_name']).size().reset_index(name='count').sort_values('count', ascending=False).head(args.top_tracks)
@@ -362,7 +362,7 @@ fig12.update_layout(
     showlegend=False
 )
 fig12.write_html(output_dir / "12_top_tracks_2025.html")
-print(f"✓ Saved: 12_top_tracks_2025.html")
+print(f"Saved: 12_top_tracks_2025.html")
 
 print("\n" + "=" * 60)
 print(f"All visualizations saved to: {output_dir}")
